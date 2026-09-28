@@ -52,10 +52,23 @@ async def generate_evaluation_report(session_data: Dict[str, Any]) -> Evaluation
     )
 
     if turns:
-        tech_scores = [t.get("evaluation", {}).get("correctness_score", 75.0) for t in turns]
-        depth_scores = [t.get("evaluation", {}).get("depth_score", 75.0) for t in turns]
-        comm_scores = [t.get("evaluation", {}).get("communication_score", 80.0) for t in turns]
-        rel_scores = [t.get("evaluation", {}).get("relevance_score", 75.0) for t in turns]
+        tech_scores = []
+        depth_scores = []
+        comm_scores = []
+        rel_scores = []
+
+        for t in turns:
+            ev = t.get("evaluation")
+            if ev and isinstance(ev, dict):
+                tech_scores.append(ev.get("correctness_score", 75.0))
+                depth_scores.append(ev.get("depth_score", 75.0))
+                comm_scores.append(ev.get("communication_score", 80.0))
+                rel_scores.append(ev.get("relevance_score", 75.0))
+            else:
+                tech_scores.append(75.0)
+                depth_scores.append(75.0)
+                comm_scores.append(80.0)
+                rel_scores.append(75.0)
 
         tech_knowledge = sum(tech_scores) / len(tech_scores)
         problem_solving = sum(depth_scores) / len(depth_scores)

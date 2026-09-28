@@ -181,7 +181,15 @@ async def process_turn_and_get_next_question(
     )
 
     # 2. Compute adaptation
-    all_scores = [t.get("evaluation", {}).get("turn_score", 75.0) for t in turns] + [eval_result.turn_score]
+    all_scores = []
+    for t in turns:
+        ev = t.get("evaluation")
+        if ev and isinstance(ev, dict):
+            all_scores.append(ev.get("turn_score", 75.0))
+        else:
+            all_scores.append(75.0)
+    all_scores.append(eval_result.turn_score)
+
     next_diff, new_planned_total, is_final, adaptation_reason = decide_adaptation(
         current_turn=current_turn_number,
         current_planned_total=current_planned,
