@@ -12,9 +12,10 @@ class Settings(BaseSettings):
     DATABASE_NAME: str = "interview_simulator"
 
     # LLM settings
-    LLM_PROVIDER: str = "anthropic"  # 'anthropic', 'openai', 'gemini', 'mock'
+    LLM_PROVIDER: str = "openrouter"  # 'openrouter', 'anthropic', 'openai', 'gemini', 'mock'
     LLM_API_KEY: str = ""
-    LLM_MODEL: str = "claude-3-5-sonnet-20241022"
+    OPENROUTER_API_KEY: str = ""
+    LLM_MODEL: str = "anthropic/claude-3.5-sonnet"
 
     # CORS & Security
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"]

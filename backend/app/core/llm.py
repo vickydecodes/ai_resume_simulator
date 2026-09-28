@@ -16,8 +16,8 @@ class LLMClient:
     """
     def __init__(self):
         self.provider = settings.LLM_PROVIDER.lower()
-        self.api_key = settings.LLM_API_KEY
-        self.model = settings.LLM_MODEL
+        self.api_key = settings.OPENROUTER_API_KEY or settings.LLM_API_KEY
+        self.model = settings.LLM_MODEL or "anthropic/claude-3.5-sonnet"
 
     async def generate_json(
         self, 
@@ -50,8 +50,6 @@ class LLMClient:
 
     async def chat(self, messages: List[Dict[str, str]], system_prompt: Optional[str] = None) -> str:
         """Multi-turn text generation for chat / interview questions."""
-        # Convert messages into single prompt representation if provider needs it
-        last_user_msg = messages[-1]["content"] if messages else ""
         formatted_prompt = ""
         for msg in messages:
             role = msg.get("role", "user").capitalize()
@@ -65,7 +63,9 @@ class LLMClient:
             return self._mock_call(prompt, system_prompt)
 
         try:
-            if self.provider == "anthropic":
+            if self.provider == "openrouter":
+                return await self._call_openrouter(prompt, system_prompt)
+            elif self.provider == "anthropic":
                 return await self._call_anthropic(prompt, system_prompt)
             elif self.provider == "openai":
                 return await self._call_openai(prompt, system_prompt)
@@ -76,6 +76,30 @@ class LLMClient:
         except Exception as e:
             logger.error(f"Error calling LLM API ({self.provider}): {e}. Falling back to mock client handler.")
             return self._mock_call(prompt, system_prompt)
+
+    async def _call_openrouter(self, prompt: str, system_prompt: Optional[str] = None) -> str:
+        url = "https://openrouter.ai/api/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {self.api_key}",
+            "HTTP-Referer": "https://github.com/vickydecodes/ai_resume_simulator",
+            "X-Title": "HireFit AI",
+            "Content-Type": "application/json"
+        }
+        messages = []
+        if system_prompt:
+            messages.append({"role": "system", "content": system_prompt})
+        messages.append({"role": "user", "content": prompt})
+
+        payload = {
+            "model": self.model or "anthropic/claude-3.5-sonnet",
+            "messages": messages,
+            "temperature": 0.7
+        }
+        async with httpx.AsyncClient(timeout=35.0) as client:
+            res = await client.post(url, headers=headers, json=payload)
+            res.raise_for_status()
+            data = res.json()
+            return data["choices"][0]["message"]["content"]
 
     async def _call_anthropic(self, prompt: str, system_prompt: Optional[str] = None) -> str:
         url = "https://api.anthropic.com/v1/messages"
