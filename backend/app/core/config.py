@@ -15,7 +15,7 @@ class Settings(BaseSettings):
     LLM_PROVIDER: str = "openrouter"  # 'openrouter', 'anthropic', 'openai', 'gemini', 'mock'
     LLM_API_KEY: str = ""
     OPENROUTER_API_KEY: str = ""
-    LLM_MODEL: str = "inclusionai/ling-3.0-flash-sante:free"
+    LLM_MODEL: str = "nvidia/nemotron-3.5-lightning:free"
 
     # CORS & Security
     CORS_ORIGINS: List[str] = ["http://localhost:5173", "http://127.0.0.1:5173", "http://localhost:3000"]

@@ -1,0 +1,21 @@
+Job Title: Lead Machine Learning Engineer (Personalization & Search)
+Company: Amazon
+Location: Seattle, WA / Remote
+
+About Amazon:
+Amazon strives to be Earth’s most customer-centric company. Our Personalization & Recommendation team powers discovery across hundreds of millions of catalog products globally.
+
+Role Overview:
+We are seeking an experienced Lead Machine Learning Engineer to design and deploy large-scale deep learning models and real-time retrieval architectures. You will lead end-to-end ML lifecycle from feature engineering to production serving and monitoring.
+
+Responsibilities:
+- Build high-scale recommendation and semantic vector search systems handling tens of thousands of requests per second.
+- Establish robust ML pipelines preventing data leakage, covariate shift, and training-serving skew.
+- Partner with product and data science teams to optimize offline metrics (ROC-AUC, NDCG) and online business metrics (CTR, Conversion).
+- Mentor junior and mid-level ML engineers in best coding and modeling practices.
+
+Requirements:
+- 5+ years of production machine learning engineering experience.
+- Deep expertise in PyTorch or TensorFlow, Python, distributed computing (Spark/Ray), and low-latency inference serving.
+- Proven experience with vector databases, embedding generation, feature stores, and continuous model monitoring.
+- Strong foundational grasp of probability, statistics, linear algebra, and evaluation metrics.

@@ -43,8 +43,10 @@ async def parse_resume_bytes(filename: str, content: bytes) -> ResumeAnalysisRes
             raw_text = extract_text_from_pdf(content)
         elif ext == "docx":
             raw_text = extract_text_from_docx(content)
+        elif ext == "txt":
+            raw_text = content.decode("utf-8", errors="ignore").strip()
         else:
-            raise HTTPException(status_code=400, detail="Unsupported file format. Must be PDF or DOCX.")
+            raise HTTPException(status_code=400, detail="Unsupported file format. Must be PDF, DOCX, or TXT.")
     except Exception as e:
         logger.error(f"Error parsing resume file '{filename}': {e}")
         raise HTTPException(status_code=400, detail=f"Failed to read resume document: {str(e)}")

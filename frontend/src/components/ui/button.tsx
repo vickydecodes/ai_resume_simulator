@@ -8,20 +8,20 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", ...props }, ref) => {
-    const baseStyles = "inline-flex items-center justify-center rounded-md font-medium text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-950 disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
+    const baseStyles = "inline-flex items-center justify-center rounded-lg font-semibold text-xs transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 cursor-pointer"
     
     const variants = {
-      default: "bg-slate-900 text-slate-50 hover:bg-slate-900/90 shadow-sm",
-      outline: "border border-slate-200 bg-white hover:bg-slate-100 text-slate-900",
-      secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80",
-      ghost: "hover:bg-slate-100 text-slate-900",
-      destructive: "bg-red-600 text-white hover:bg-red-700 shadow-sm"
+      default: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm shadow-primary/20",
+      outline: "border border-border bg-card/60 hover:bg-muted/80 text-foreground",
+      secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border/40",
+      ghost: "hover:bg-muted/80 text-muted-foreground hover:text-foreground",
+      destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-sm"
     }
 
     const sizes = {
-      default: "h-10 px-4 py-2",
+      default: "h-9 px-4 py-2",
       sm: "h-8 px-3 text-xs",
-      lg: "h-11 px-8 text-base"
+      lg: "h-11 px-6 text-sm"
     }
 
     return (

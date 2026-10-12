@@ -4,7 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.core.db import connect_to_mongo, close_mongo_connection
-from app.routers import session, interview, score
+from app.routers import session, interview, score, company
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("uvicorn.error")
@@ -37,6 +37,7 @@ app.add_middleware(
 app.include_router(session.router, prefix=settings.API_V1_STR)
 app.include_router(interview.router, prefix=settings.API_V1_STR)
 app.include_router(score.router, prefix=settings.API_V1_STR)
+app.include_router(company.router, prefix=settings.API_V1_STR)
 
 @app.get("/api/health", tags=["Health"])
 async def health_check():

@@ -1,7 +1,7 @@
 import uuid
 import datetime
 import logging
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from fastapi import APIRouter, UploadFile, File, Form, HTTPException, BackgroundTasks
 from app.core.db import get_database
 from app.core.security import validate_resume_file
@@ -9,6 +9,7 @@ from app.services.resume_parser import parse_resume_bytes
 from app.services.role_analyzer import analyze_role
 from app.services.company_scraper import scrape_company_intelligence
 from app.models.schemas import SessionCreateResponse, SessionDetailResponse
+from app.services.question_bank import detect_role_category, is_non_tech_role
 
 logger = logging.getLogger("uvicorn.error")
 router = APIRouter(prefix="/sessions", tags=["Sessions"])
@@ -21,13 +22,14 @@ async def run_context_analysis(
     file_name: str,
     file_bytes: bytes,
     company_name: str,
-    role_title: str
+    role_title: str,
+    job_description: Optional[str] = None
 ):
     """Execute background processing for resume parsing, role profiling, and company scraping."""
     logger.info(f"Starting background context analysis for session {session_id}...")
     try:
         resume_res = await parse_resume_bytes(file_name, file_bytes)
-        role_res = await analyze_role(role_title)
+        role_res = await analyze_role(role_title, job_description or "")
         company_res = await scrape_company_intelligence(company_name)
 
         session_update = {
@@ -60,7 +62,9 @@ async def run_context_analysis(
 async def create_session(
     resume: UploadFile = File(...),
     company: str = Form(...),
-    role: str = Form(...)
+    role: str = Form(...),
+    job_description: Optional[str] = Form(None),
+    difficulty: Optional[str] = Form("medium")
 ):
     """Create a new mock interview session and kick off resume, role, and company analysis."""
     if not company or not company.strip():
@@ -74,14 +78,24 @@ async def create_session(
     session_id = str(uuid.uuid4())
     now = datetime.datetime.now(datetime.timezone.utc)
 
+    role_category = "sales" if is_non_tech_role(role.strip()) else "tech"
+    diff_level = (difficulty or "medium").lower().strip()
+    if diff_level not in ["easy", "low", "medium", "hard"]:
+        diff_level = "medium"
+
+    calc_difficulty = 4 if diff_level == "hard" else (2 if diff_level in ["easy", "low"] else 3)
+
     session_doc = {
         "session_id": session_id,
         "company_name": company.strip(),
         "role_title": role.strip(),
+        "job_description": job_description.strip() if job_description else None,
+        "difficulty_level": diff_level,
+        "role_category": role_category,
         "status": "analyzing",
         "current_turn": 0,
-        "total_questions_planned": 8,
-        "current_difficulty": 3,
+        "total_questions_planned": 20,
+        "current_difficulty": calc_difficulty,
         "turns": [],
         "created_at": now,
         "updated_at": now
@@ -102,7 +116,8 @@ async def create_session(
         file_name=resume.filename or "resume.pdf",
         file_bytes=file_bytes,
         company_name=company.strip(),
-        role_title=role.strip()
+        role_title=role.strip(),
+        job_description=job_description.strip() if job_description else None
     )
 
     updated_sess = in_memory_sessions.get(session_id, session_doc)
@@ -115,7 +130,9 @@ async def create_session(
         role_title=role.strip(),
         company_name=company.strip(),
         seniority_level=updated_sess.get("role_analysis", {}).get("seniority_level", "Mid"),
-        total_questions_planned=updated_sess.get("total_questions_planned", 8)
+        total_questions_planned=20,
+        difficulty_level=diff_level,
+        role_category=role_category
     )
 
 @router.get("/{session_id}", response_model=SessionDetailResponse)

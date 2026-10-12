@@ -1,0 +1,26 @@
+ALEX RIVERA
+Email: alex.rivera@example.com | Phone: +1 (555) 019-2834 | Location: San Francisco, CA
+LinkedIn: linkedin.com/in/alex-rivera-dev | GitHub: github.com/alexrivera-tech
+
+SUMMARY
+High-impact Full Stack Software Engineer with 5+ years of experience architecting high-throughput backend services and reactive frontend interfaces. Proven expertise in Python, FastAPI, PostgreSQL, Redis, React, and AWS cloud microservices. Led database optimization projects reducing latency by 42% under peak transaction loads.
+
+EXPERIENCE
+Senior Backend Engineer | PayStream Systems | 2022 – Present
+- Designed and maintained payment orchestration microservices processing over 12M monthly transactions using FastAPI, Redis, and PostgreSQL.
+- Implemented asynchronous event streaming with Kafka to handle payment webhook retries, eliminating transaction loss.
+- Decreased API p99 response times from 340ms to 95ms via distributed caching (Redis) and SQL query plan re-indexing.
+- Mentored 4 mid-level engineers and established CI/CD pipeline automation with GitHub Actions and Docker.
+
+Full Stack Software Engineer | CloudScale Labs | 2019 – 2022
+- Developed scalable customer dashboards in React, TypeScript, and Tailwind CSS serving 45,000 daily active users.
+- Built REST and GraphQL endpoints in Python (Django/FastAPI) with strict unit test coverage exceeding 88%.
+- Optimized relational schemas and connection pools, ensuring 99.98% platform uptime during Black Friday traffic spikes.
+
+TECHNICAL SKILLS
+- Languages: Python, JavaScript, TypeScript, SQL, Bash
+- Frameworks & Tools: FastAPI, Django, React, Node.js, Next.js, Redis, PostgreSQL, Docker, Kubernetes
+- Cloud & Architecture: AWS (ECS, RDS, S3, CloudWatch), Distributed Systems, REST APIs, Microservices, CI/CD
+
+EDUCATION
+B.S. in Computer Science | University of California, Berkeley | 2015 – 2019

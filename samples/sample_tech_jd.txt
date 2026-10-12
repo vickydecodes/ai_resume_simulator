@@ -1,0 +1,20 @@
+Job Title: Senior Software Engineer (Payment Infrastructure)
+Company: Stripe
+Location: San Francisco, CA / Remote
+
+About the Role:
+At Stripe, we build financial infrastructure that powers millions of businesses worldwide. We are looking for an experienced Senior Software Engineer to join our Core Payment Routing & Reliability team. You will design, build, and operate foundational distributed systems that handle billions of dollars in daily transaction volume with strict zero-downtime tolerance.
+
+Key Responsibilities:
+- Design, scale, and maintain high-throughput backend services and public-facing APIs with 99.999% reliability.
+- Build fault-tolerant distributed systems capable of handling unexpected upstream banking gateway failures with automated idempotent retries.
+- Optimize database performance, connection pooling, and caching across high-volume relational and distributed storage systems.
+- Collaborate with security, platform, and product teams to safeguard financial telemetry and user transactions.
+- Participate in operational on-call rotations and lead post-incident root cause analyses (RCAs).
+
+Requirements & Qualifications:
+- 5+ years of software engineering experience delivering production backend systems at scale.
+- Proficiency in Python, Go, Java, or Ruby, with a strong understanding of concurrency, event loops, and asynchronous I/O.
+- Deep hands-on experience with SQL databases (PostgreSQL/MySQL), distributed caching (Redis/Memcached), and message brokers (Kafka/RabbitMQ).
+- Strong track record in system architecture, capacity planning, and microservices reliability patterns.
+- Excellent communication and cross-functional leadership skills.

@@ -2,7 +2,7 @@ import re
 from fastapi import HTTPException, UploadFile
 from app.core.config import settings
 
-ALLOWED_EXTENSIONS = {".pdf", ".docx"}
+ALLOWED_EXTENSIONS = {".pdf", ".docx", ".txt"}
 
 def validate_resume_file(file: UploadFile, content: bytes) -> None:
     """Validate uploaded resume file size and extension."""

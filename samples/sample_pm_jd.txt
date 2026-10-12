@@ -1,0 +1,21 @@
+Job Title: Senior Product Manager (Core Experience)
+Company: Google
+Location: Mountain View, CA / Remote
+
+About Google:
+Google’s mission is to organize the world’s information and make it universally accessible and useful.
+
+Role Overview:
+As a Senior Product Manager at Google, you will drive product vision, strategic roadmap, and execution for core user engagement experiences touching billions of users daily. You will work closely with engineering leaders, UX designers, data scientists, and policy partners.
+
+Responsibilities:
+- Define product strategy and measurable North Star metrics for high-visibility user-facing products.
+- Balance consumer usability with technical scalability, privacy compliance, and business monetization goals.
+- Conduct quantitative experimentation (A/B testing) and qualitative user studies to validate hypotheses.
+- Lead sprint planning, PRD documentation, and cross-functional go-to-market alignment.
+
+Requirements:
+- 5+ years of product management experience shipping digital products at scale.
+- Strong analytical and quantitative skills (A/B testing, cohort retention, SQL, statistical significance).
+- Proven track record of cross-functional influence without authority across engineering and executive teams.
+- Deep user empathy and structured product sense.

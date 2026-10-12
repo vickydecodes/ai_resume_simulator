@@ -1,0 +1,25 @@
+PRIYA SHARMA
+Email: priya.sharma@example.com | Location: Seattle, WA | LinkedIn: linkedin.com/in/priyasharma-pm
+
+SUMMARY
+Data-driven Senior Product Manager with 6+ years of experience leading cross-functional teams in zero-to-one product discovery, growth metrics, and high-scale consumer platform features. Proven record of launching features reaching 30M+ monthly active users, increasing onboarding conversion by 34%, and optimizing monetization funnels.
+
+EXPERIENCE
+Senior Product Manager | StreamPlatform | 2022 – Present
+- Owned consumer engagement roadmap across web and mobile apps, increasing 30-day retention from 42% to 56%.
+- Managed quarterly prioritization using RICE and OKR frameworks across 18 engineers and 3 product designers.
+- Designed automated personalized recommendation feed that grew user watch-time by 22% and boosted annual ad revenue by $4.2M.
+- Partnered with Data Science to execute 40+ rigorous A/B experiments with statistically significant sample sizes.
+
+Product Manager | GrowthHub SaaS | 2019 – 2022
+- Led product-led growth (PLG) initiatives, reducing customer acquisition cost (CAC) by 28% through viral workspace invites.
+- Streamlined enterprise admin dashboard, decreasing churn among top-tier accounts from 8.5% to 4.1%.
+- Authored clear PRDs, metric definitions, and user journey maps for executive leadership.
+
+CORE SKILLS
+- Frameworks: RICE, OKRs, Product Discovery, Customer Journey Mapping, User Story Mapping
+- Analytics & Tools: Amplitude, Mixpanel, SQL, Figma, Jira, Tableau, A/B Testing, Experimentation
+- Business Strategy: TAM Analysis, Pricing Models, Go-To-Market (GTM), Unit Economics
+
+EDUCATION
+B.S. in Information Systems & Economics | University of Washington | 2015 – 2019

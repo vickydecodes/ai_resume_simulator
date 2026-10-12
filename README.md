@@ -15,11 +15,26 @@
 
 ## Core Features
 
-1. **Multi-Format Resume Ingestion:** Automatically parses PDF and DOCX resumes, extracting candidate skills, experience years, key projects, education, and skill gaps.
-2. **Company Intelligence Scraping & Caching:** Asynchronously fetches and analyzes target company web pages, caching results in MongoDB with a 7-day TTL index.
-3. **Adaptive Text Interview Engine:** Asks strictly ONE question at a time. Dynamically scales difficulty (levels 1-5), branches topics based on prior performance, and adapts session length (min 5, default 8, max 15 questions).
-4. **Calibrated Scoring & Selection Probability:** Computes category sub-scores (Resume Fit, Technical Knowledge, Communication, Problem Solving, Company Awareness) and maps them into an empirical **Estimated Selection Probability ($P_{\text{selection}}$)**.
-5. **Prompt Injection & Privacy Guardrails:** Sanitizes untrusted user inputs inside `<untrusted_content>` tags and redacts sensitive PII.
+1. **5 Pre-Configured Role Tracks & Company Presets:**
+   - **Software Engineering (Tech):** Calibrated for Stripe, Google, and Amazon payment & distributed architecture.
+   - **Enterprise Sales & GTM:** Calibrated for Salesforce and B2B SaaS MEDDPICC enterprise closing.
+   - **Product Management (PM):** Metrics, TAM sizing, cohort retention, and user experimentation.
+   - **Data Science & Machine Learning:** Feature stores, training-serving skew, latency, and vector search.
+   - **Investment Banking & Corporate Strategy:** DCF, LBO, three-statement models, and M&A advisory.
+2. **Interactive Learning & Realistic Testing Modes:**
+   - **Practice Mode:** Instant feedback on option selection with concept rationale & explanation.
+   - **Exam Mode:** Strict test conditions without revealing answers upfront.
+   - **30-Minute Countdown Timer:** Real-time clock with pause/resume and visual urgency indicators (<5 min warning, <2 min alert).
+   - **Flag for Review / Bookmarking:** Bookmark questions with visual indicators in the 1..20 question navigator.
+3. **Candidate Auth & Past Session History:**
+   - Candidate profile switcher / login (Name, Email, Initials) stored in `localStorage`.
+   - Past Interviews scorecard drawer tracking historical scores, companies, roles, and report links.
+4. **Per-Question Detailed Review:**
+   - Evaluates all 20 questions upfront with candidate selection vs verified key, topic, difficulty, and concept rationale.
+5. **ATS Resume Optimizer:**
+   - ATS match percentage, matched core competencies, high-priority missing keyword gaps, and 3 AI-optimized copyable bullet points tailored to the target JD.
+6. **One-Click Download / Print PDF:**
+   - Clean `@media print` styling generating professional multi-page scorecards.
 
 ---
 
@@ -44,12 +59,28 @@ Where:
 
 ## Quickstart & Setup Instructions
 
-### 1. Prerequisites
+### 1. One-Click Launchers (Automated Check & Run in Separate Terminals)
+
+Both scripts automatically verify Python `venv` and frontend `node_modules` (installing them if missing), and launch backend and frontend in separate dedicated `cmd` terminals:
+
+- **Windows:** Double-click [`run.bat`](file:///d:/Studies/projects/my_projects/ai_resume_simulator/run.bat) or execute:
+  ```cmd
+  run.bat
+  ```
+- **Linux / macOS / Git Bash:** Execute [`run.sh`](file:///d:/Studies/projects/my_projects/ai_resume_simulator/run.sh):
+  ```bash
+  chmod +x run.sh
+  ./run.sh
+  ```
+
+---
+
+### 2. Prerequisites
 - Python 3.10+
 - Node.js 18+ & npm 9+
 - MongoDB instance (Local running at `mongodb://localhost:27017` or MongoDB Atlas URI)
 
-### 2. Backend Setup & Run
+### 3. Manual Backend Setup & Run
 
 ```bash
 # Navigate to backend directory

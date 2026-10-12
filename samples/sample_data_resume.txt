@@ -1,0 +1,23 @@
+DR. MARCUS CHEN
+Email: marcus.chen@example.com | Location: San Francisco, CA | GitHub: github.com/marcuschen-ml
+
+SUMMARY
+Senior Machine Learning Engineer & Data Scientist with 5+ years of experience architecting end-to-end production ML pipelines, real-time recommendation engines, and deep learning models at scale. Expert in Python, PyTorch, Ray, Spark, feature stores, and vector embeddings. Reduced model inference latency by 60% while improving Precision-Recall AUC by 14%.
+
+EXPERIENCE
+Lead Machine Learning Engineer | RetailAI Systems | 2022 – Present
+- Architected vector search and recommendation retrieval service indexing 40M items using HNSW in Pinecone and PyTorch embedding models.
+- Deployed real-time fraud classification pipeline processing 35,000 queries per second with p99 latency under 20ms using Triton Inference Server.
+- Mitigated severe training-serving skew and data leakage by designing centralized Feast feature store architecture.
+- Designed automated model drift detection monitors tracking Population Stability Index (PSI) and feature distributions in production.
+
+Data Scientist | AnalyticsCore | 2019 – 2022
+- Built predictive customer lifetime value (LTV) and churn forecasting models utilizing XGBoost and LightGBM with 91% ROC-AUC.
+- Ran extensive statistical A/B tests analyzing multi-variate treatment effects with bootstrap confidence intervals.
+
+SKILLS
+- Core ML: PyTorch, TensorFlow, Scikit-learn, XGBoost, Hugging Face, Ray, MLflow
+- Data & Cloud: Python, SQL, Spark, Kafka, AWS SageMaker, Docker, Kubernetes, Vector DBs (HNSW/Pinecone)
+
+EDUCATION
+Ph.D. in Computer Science (Machine Learning) | Stanford University | 2015 – 2019
