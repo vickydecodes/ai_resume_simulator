@@ -36,7 +36,7 @@ def create_master_docx():
     doc.add_page_break()
 
     # Process all markdown files in order
-    docs_dir = os.path.join(os.path.dirname(__file__), "..", "docs")
+    docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     md_files = sorted(glob.glob(os.path.join(docs_dir, "*.md")))
 
     for md_path in md_files:
@@ -109,7 +109,7 @@ def create_master_docx():
 
     out_path = os.path.join(docs_dir, "HireFit_AI_Comprehensive_Project_Documentation.docx")
     doc.save(out_path)
-    print(f"\n🎉 Successfully generated DOCX documentation at: {out_path}")
+    print(f"\n[OK] Successfully generated DOCX documentation at: {out_path}")
     return out_path
 
 if __name__ == "__main__":

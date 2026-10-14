@@ -457,15 +457,11 @@ def generate_60page_capstone_docx():
         doc.add_page_break()
 
     # Save output DOCX
-    docs_dir = os.path.join(os.path.dirname(__file__), "..", "docs")
-    root_dir = os.path.join(os.path.dirname(__file__), "..")
-
+    docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     out_docs = os.path.join(docs_dir, "HireFit_AI_60Page_Capstone_Project_Report.docx")
-    out_root = os.path.join(root_dir, "HireFit_AI_60Page_Capstone_Project_Report.docx")
 
     doc.save(out_docs)
-    doc.save(out_root)
-    print(f"Generated full 60-page Capstone Project Report DOCX at:\n - {out_docs}\n - {out_root}")
+    print(f"Generated full 60-page Capstone Project Report DOCX at:\n - {out_docs}")
 
 if __name__ == "__main__":
     generate_60page_capstone_docx()

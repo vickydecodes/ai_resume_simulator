@@ -145,7 +145,13 @@ Open `http://localhost:5173` in your browser.
 │   │   └── main.tsx
 │   ├── package.json
 │   └── vite.config.ts
-├── docs/                            # 60-page Master Technical Documentation
+├── docs/                            # 60-page Master Technical Documentation & Handbooks
+│   ├── *.md                         # Chapter breakdown (01 - 07)
+│   ├── *.docx / *.pdf / *.html      # Comprehensive Reports & Handbooks
+│   └── scripts/                     # Document compilation & generation scripts
+├── scripts/                         # Playwright automation & screenshot utilities
+├── samples/                         # Multi-role test resumes and job descriptions
+├── screenshots/                     # Platform preview images
 └── README.md
 ```
 

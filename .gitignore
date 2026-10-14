@@ -18,8 +18,19 @@ backend/.env
 frontend/.env
 *.local
 
+# Python build & packaging artifacts
+*.egg-info/
+backend/*.egg-info/
+dist/
+build/
+
+# TypeScript build info
+*.tsbuildinfo
+frontend/*.tsbuildinfo
+
 # OS files
 .DS_Store
 Thumbs.db
 .gemini
 *_backup.docx
+

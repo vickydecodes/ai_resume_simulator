@@ -3,7 +3,8 @@ import time
 from playwright.sync_api import sync_playwright
 
 BASE_URL = "http://127.0.0.1:5173"
-SCREENSHOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "screenshots")
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+SCREENSHOT_DIR = os.path.join(ROOT_DIR, "screenshots")
 
 def run():
     with sync_playwright() as p:

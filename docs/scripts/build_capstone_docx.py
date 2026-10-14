@@ -243,16 +243,12 @@ def build_report_docx():
             p_body.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
             p_body.paragraph_format.space_after = Pt(6)
 
-    # Save to docs folder and root folder
-    docs_dir = os.path.join(os.path.dirname(__file__), "..", "docs")
-    root_dir = os.path.join(os.path.dirname(__file__), "..")
-
+    # Save to docs folder
+    docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     out_docs = os.path.join(docs_dir, "HireFit_AI_Capstone_Project_Report.docx")
-    out_root = os.path.join(root_dir, "HireFit_AI_Capstone_Project_Report.docx")
 
     doc.save(out_docs)
-    doc.save(out_root)
-    print(f"🎉 Generated master Capstone Project Report DOCX at:\n - {out_docs}\n - {out_root}")
+    print(f"[OK] Generated master Capstone Project Report DOCX at:\n - {out_docs}")
 
 if __name__ == "__main__":
     build_report_docx()

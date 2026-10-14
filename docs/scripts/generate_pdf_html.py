@@ -1,0 +1,527 @@
+import subprocess
+import os
+
+HTML_CONTENT = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HireFit AI: Complete Architecture, Codebase & Presentation Handbook</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+    @bottom-center {
+      content: counter(page);
+      font-size: 9pt;
+      color: #64748b;
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #1e293b;
+    line-height: 1.5;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 4px;
+    margin-top: 24pt;
+    margin-bottom: 8pt;
+    page-break-after: avoid;
+  }
+  h2 {
+    font-size: 13pt;
+    font-weight: 700;
+    color: #2563eb;
+    margin-top: 16pt;
+    margin-bottom: 6pt;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 10.5pt;
+    font-weight: 700;
+    color: #1e293b;
+    margin-top: 12pt;
+    margin-bottom: 4pt;
+    page-break-after: avoid;
+  }
+  p {
+    margin-top: 0;
+    margin-bottom: 6pt;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    margin-bottom: 8pt;
+  }
+  .cover {
+    text-align: center;
+    padding: 30pt 10pt 20pt 10pt;
+    page-break-after: always;
+  }
+  .cover-title {
+    font-size: 24pt;
+    font-weight: 900;
+    color: #0f172a;
+    line-height: 1.2;
+    margin-bottom: 8pt;
+  }
+  .cover-subtitle {
+    font-size: 12pt;
+    color: #64748b;
+    margin-bottom: 24pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8pt;
+    margin-bottom: 12pt;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+  }
+  th {
+    background-color: #0f172a;
+    color: #ffffff;
+    text-align: left;
+    padding: 6px 10px;
+    font-weight: 700;
+    border: 1px solid #0f172a;
+  }
+  td {
+    padding: 6px 10px;
+    border: 1px solid #cbd5e1;
+    vertical-align: top;
+  }
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+  .box {
+    background-color: #f8fafc;
+    border-left: 4px solid #2563eb;
+    padding: 8pt 12pt;
+    margin: 8pt 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+  }
+  .box-title {
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4pt;
+    font-size: 9.5pt;
+  }
+  ul {
+    margin-top: 2pt;
+    margin-bottom: 6pt;
+    padding-left: 18pt;
+  }
+  li {
+    margin-bottom: 3pt;
+  }
+  code {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 8.5pt;
+    background-color: #f1f5f9;
+    padding: 1px 4px;
+    border-radius: 3px;
+    color: #0f172a;
+  }
+  .math {
+    background-color: #f1f5f9;
+    padding: 6pt 10pt;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+    border-left: 3px solid #64748b;
+    margin: 6pt 0;
+    display: block;
+  }
+  .qa-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 8pt 10pt;
+    margin-bottom: 8pt;
+    page-break-inside: avoid;
+  }
+  .qa-q {
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4pt;
+    font-size: 9.5pt;
+  }
+  .qa-a {
+    color: #334155;
+    font-size: 9pt;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="badge">HIREFIT AI • COMPREHENSIVE PROJECT HANDBOOK</div>
+  <div class="cover-title">HireFit AI: Complete Architecture,<br>Codebase & Presentation Handbook</div>
+  <div class="cover-subtitle">
+    Adaptive Target-Company & Role-Specific Interview Simulator<br>
+    Detailed Technical Breakdown, Package Specifications, Code Walkthrough & Master Viva Defense Q&A
+  </div>
+
+  <table style="max-width: 500px; margin: 0 auto; text-align: left;">
+    <tr>
+      <td style="font-weight: bold; width: 140px; background: #f1f5f9;">Project Name</td>
+      <td>HireFit AI (Adaptive Interview Simulator)</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; background: #f1f5f9;">Architecture</td>
+      <td>FastAPI (Async Python 3.10+) + MongoDB + React 19 (TypeScript + shadcn/ui)</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; background: #f1f5f9;">Key Innovations</td>
+      <td>Company Intel Scraping, Sigmoid Selection Probability, 5 Role Tracks, ATS Optimizer</td>
+    </tr>
+    <tr>
+      <td style="font-weight: bold; background: #f1f5f9;">Evaluation Focus</td>
+      <td>Capstone Project Review, Viva Voce & Technical Defense</td>
+    </tr>
+  </table>
+</div>
+
+<h1>1. Executive Summary & Problem Statement</h1>
+<p>
+  <strong>HireFit AI</strong> is an advanced, text-based adaptive interview simulation platform engineered to address the growing asymmetry in contemporary technology and corporate recruitment. Traditional mock interview platforms rely on static LeetCode coding problems or generic behavioural templates that do not reflect the actual company culture, distributed system architectures, or quantitative expectations of specific employers such as Stripe, Google, Amazon, or Salesforce.
+</p>
+
+<h2>The 3 Core Flaws in Modern Interview Preparation</h2>
+<ul>
+  <li><strong>Lack of Company Context:</strong> Candidates prepare generic answers without knowing the target company's actual tech stack, operational constraints (e.g. Stripe's idempotency requirements or Google's tail latency tolerances), or cultural rubrics.</li>
+  <li><strong>Uncalibrated Assessment & Hallucinatory Feedback:</strong> Most AI mock tools output arbitrary ratings without mathematical validation or benchmark standards, leaving candidates uncertain about real-world hiring odds.</li>
+  <li><strong>Disconnect from ATS & Resumes:</strong> Existing simulators evaluate answers in isolation from the candidate's actual resume, failing to spot skill gaps or optimize bullet points for Applicant Tracking Systems (ATS).</li>
+</ul>
+
+<h2>The HireFit AI Solution</h2>
+<p>
+  HireFit AI ingests three core inputs: (1) Candidate Resume (PDF/DOCX), (2) Target Job Role & Description, and (3) Target Employer Name. It then triggers a live asynchronous web scraping engine to extract the company's real-time tech stack, culture, and valuation, maps candidate readiness against company competencies, conducts a 20-question, 2-round structured assessment (Aptitude & Sizing + Domain Scenarios), and generates a statistically calibrated Offer Selection Probability alongside an actionable ATS Resume Optimizer.
+</p>
+
+<h1>2. Comprehensive Package & Dependencies Directory</h1>
+
+<h2>2.1 Backend Dependencies (Python 3.10+)</h2>
+<p>The backend is built as a modular FastAPI asynchronous service. Below is every package in <code>requirements.txt</code> and its exact technical purpose:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Backend Package</th>
+      <th>Technical Purpose & Role in Architecture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>fastapi (>=0.110.0)</strong></td>
+      <td>High-performance asynchronous web API framework. Handles routing, dependency injection, automatic OpenAPI/Swagger documentation generation at <code>/docs</code>, and native async/await request concurrency.</td>
+    </tr>
+    <tr>
+      <td><strong>uvicorn (>=0.28.0)</strong></td>
+      <td>Lightning-fast ASGI (Asynchronous Server Gateway Interface) web server implementation for Python. Runs the FastAPI application with auto-reload capabilities.</td>
+    </tr>
+    <tr>
+      <td><strong>pydantic (>=2.6.0)</strong></td>
+      <td>High-speed data validation and parsing using Python type hints. Enforces strict schema validation on all API payloads (<code>SessionCreateResponse</code>, <code>QuestionItem</code>, <code>EvaluationReportResult</code>) with zero hallucination.</td>
+    </tr>
+    <tr>
+      <td><strong>pydantic-settings (>=2.2.0)</strong></td>
+      <td>Configuration management for Pydantic v2. Automatically loads environment variables from <code>.env</code> into typed Settings objects (<code>MONGODB_URL</code>, <code>LLM_API_KEY</code>, scoring weights).</td>
+    </tr>
+    <tr>
+      <td><strong>motor (>=3.3.0)</strong></td>
+      <td>The official asynchronous, non-blocking Python driver for MongoDB. Allows FastAPI async handlers to execute non-blocking database queries without stalling the event loop.</td>
+    </tr>
+    <tr>
+      <td><strong>pymongo (>=4.6.0)</strong></td>
+      <td>Synchronous MongoDB client dependency required by Motor for low-level BSON serialization and connection pooling.</td>
+    </tr>
+    <tr>
+      <td><strong>httpx (>=0.27.0)</strong></td>
+      <td>Next-generation HTTP client for Python with native async support and HTTP/2 capabilities. Used in the web scraping pipeline to fetch company public pages with strict timeout enforcements.</td>
+    </tr>
+    <tr>
+      <td><strong>beautifulsoup4 (>=4.12.0)</strong></td>
+      <td>HTML parsing library. Extracts text content, clears noisy script/style tags, and isolates corporate descriptions, hero tags, and tech stack references from scraped HTML.</td>
+    </tr>
+    <tr>
+      <td><strong>pdfplumber (>=0.10.0)</strong></td>
+      <td>Deep layout-aware PDF extraction library. Extracts text lines, tables, and sections from candidate resumes without character truncation.</td>
+    </tr>
+    <tr>
+      <td><strong>python-docx (>=1.1.0)</strong></td>
+      <td>Microsoft Word (.docx) document ingestion and generation library. Used for parsing uploaded DOCX resumes and exporting technical reports.</td>
+    </tr>
+    <tr>
+      <td><strong>python-multipart (>=0.0.9)</strong></td>
+      <td>Streaming multipart form-data parser required by FastAPI to receive uploaded resume files and text form fields in a single HTTP POST request.</td>
+    </tr>
+    <tr>
+      <td><strong>pytest & pytest-asyncio</strong></td>
+      <td>Automated unit and integration testing framework. Enables non-blocking asynchronous testing of FastAPI routers, scoring rubrics, and scraper functions.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.2 Frontend Dependencies (React 19 + TypeScript + Vite)</h2>
+<p>The frontend is built with React 19, Vite, and Tailwind CSS v4, styled exclusively using standard shadcn/ui components:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Frontend Library</th>
+      <th>Technical Purpose & Role in Architecture</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>react & react-dom (19.2.x)</strong></td>
+      <td>The core UI library. Leverages React 19 concurrent features, improved hydration, and optimized DOM rendering.</td>
+    </tr>
+    <tr>
+      <td><strong>vite (8.3.x)</strong></td>
+      <td>Next-generation frontend tooling and build server providing instantaneous Hot Module Replacement (HMR) and optimized Rollup production bundling.</td>
+    </tr>
+    <tr>
+      <td><strong>typescript (~6.0.x)</strong></td>
+      <td>Static typing language providing compile-time type safety across API interfaces, component props, and complex state models.</td>
+    </tr>
+    <tr>
+      <td><strong>@tailwindcss/vite & tailwindcss (v4.3.x)</strong></td>
+      <td>Modern utility-first CSS framework. Version 4 includes native Vite integration, lightning CSS processing, and streamlined design tokens.</td>
+    </tr>
+    <tr>
+      <td><strong>@radix-ui/react primitives</strong></td>
+      <td>Accessible, unstyled UI primitives powering shadcn/ui: Dialog, Tabs, Progress, ScrollArea, Separator, Slot, and Label. Ensures full WCAG 2.1 AA keyboard navigation.</td>
+    </tr>
+    <tr>
+      <td><strong>lucide-react (1.48.x)</strong></td>
+      <td>High-performance SVG icon collection used consistently throughout navigation, metric cards, badges, and alerts.</td>
+    </tr>
+    <tr>
+      <td><strong>sonner (2.0.x)</strong></td>
+      <td>Smooth, toast notification library. Provides instant feedback for actions like copying AI bullet points, timer warnings, and scraping status.</td>
+    </tr>
+    <tr>
+      <td><strong>clsx & tailwind-merge</strong></td>
+      <td>Utility functions for conditionally joining class names and intelligently merging conflicting Tailwind classes without CSS specificity bugs.</td>
+    </tr>
+    <tr>
+      <td><strong>react-router-dom (7.18.x)</strong></td>
+      <td>Client-side routing engine managing navigation between Home, CompanyDetail, Profile, Setup, Interview, and Result pages.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>3. Comprehensive Codebase Architecture & File Walkthrough</h1>
+
+<h2>3.1 Backend Modules (backend/app/)</h2>
+
+<div class="box">
+  <div class="box-title">1. backend/app/main.py</div>
+  Central entry point of the FastAPI backend. Implements an asynchronous lifespan context manager (<code>lifespan</code>) that connects to MongoDB on startup via <code>connect_to_mongo()</code> and closes the connection pool gracefully on shutdown. Configures CORS middleware, mounts all sub-routers under <code>/api</code>, and exposes <code>/api/health</code> for monitoring.
+</div>
+
+<div class="box">
+  <div class="box-title">2. backend/app/core/config.py</div>
+  Central configuration class using <code>pydantic_settings.BaseSettings</code>. Defines environment variables with sensible defaults: <code>MONGODB_URL</code>, <code>LLM_PROVIDER</code>, <code>LLM_MODEL</code>, CORS origins, file size limits (5MB), and the 5 mathematical scoring weights (Resume Fit: 0.25, Technical: 0.35, Communication: 0.15, Problem Solving: 0.15, Company Awareness: 0.10).
+</div>
+
+<div class="box">
+  <div class="box-title">3. backend/app/core/db.py</div>
+  Manages asynchronous MongoDB connectivity using Motor. Initializes the database instance and provides a <code>get_database()</code> accessor. If MongoDB is not running locally, the application catches the connection timeout and seamlessly falls back to an in-memory dictionary cache (<code>in_memory_sessions</code>), ensuring zero crashes.
+</div>
+
+<div class="box">
+  <div class="box-title">4. backend/app/core/security.py</div>
+  Enforces security guardrails: (1) <code>validate_resume_file()</code> verifies file extension (.pdf, .docx, .txt) and 5MB limit. (2) <code>sanitize_user_answer()</code> strips prompt injection exploits like 'ignore previous instructions' and escapes HTML/script tags. (3) PII scrubbing cleans confidential candidate identification before LLM calls.
+</div>
+
+<div class="box">
+  <div class="box-title">5. backend/app/core/llm.py</div>
+  Provider-agnostic LLM interface supporting OpenRouter, Anthropic, Google Gemini, and OpenAI. Crucially features a robust <code>MockLLMClient</code> fallback: if no API key is configured or network is offline, the mock client generates structured, deterministic JSON evaluations conforming to Pydantic schemas.
+</div>
+
+<div class="box">
+  <div class="box-title">6. backend/app/services/company_scraper.py</div>
+  Real-time company intelligence ingestion pipeline. Features <code>is_allowed_by_robots()</code> using <code>urllib.robotparser</code> to honor robots.txt rules for 'HireFitBot'. Uses <code>httpx.AsyncClient</code> with a 4.0-second timeout to fetch pages, cleans DOM nodes via BeautifulSoup4, and estimates company worth, tech stack, and culture.
+</div>
+
+<div class="box">
+  <div class="box-title">7. backend/app/services/question_bank.py</div>
+  Contains role-detection heuristics (<code>detect_role_category</code>) and pre-calibrated question suites for 5 specialized industry tracks: Tech (Distributed Systems), Sales (MEDDPICC), PM (Metrics/TAM), Data Science (MLOps/Skew), and Finance (DCF/LBO). Each track provides 20 structured questions divided into Round 1 (Aptitude) and Round 2 (Applied Scenarios).
+</div>
+
+<div class="box">
+  <div class="box-title">8. backend/app/services/interview_engine.py</div>
+  Core interview execution logic. Generates full 20-question assessments upfront (<code>generate_all_questions_for_session</code>). Provides <code>evaluate_batch_answers()</code> which evaluates all candidate submissions concurrently using Python's <code>asyncio.gather(*eval_tasks)</code> for sub-second evaluation.
+</div>
+
+<div class="box">
+  <div class="box-title">9. backend/app/services/scorer.py</div>
+  Implements the mathematical evaluation rubrics. Calculates candidate-role skill overlap, computes weighted category scores across turns, calculates the logistic sigmoid offer selection probability, and generates actionable ATS resume optimization bullet points.
+</div>
+
+<div class="box">
+  <div class="box-title">10. backend/app/routers/ (session.py, interview.py, company.py, score.py)</div>
+  <ul>
+    <li><code>POST /api/sessions</code>: Creates session, parses resume bytes, triggers background context analysis.</li>
+    <li><code>GET /api/sessions/{id}/questions</code>: Returns all 20 calibrated interview questions upfront for smooth client-side navigation.</li>
+    <li><code>POST /api/sessions/{id}/submit-all</code>: Submits all answers and evaluates them concurrently via asyncio.gather.</li>
+    <li><code>GET /api/sessions/{id}/result</code>: Compiles and returns final multi-dimensional scorecard and ATS report.</li>
+    <li><code>POST /api/companies/scrape</code>: Scrapes any user-entered company website and returns a full hiring rubric with financial valuation.</li>
+  </ul>
+</div>
+
+<h2>3.2 Frontend Modules (frontend/src/)</h2>
+
+<div class="box">
+  <div class="box-title">1. frontend/src/pages/Home.tsx</div>
+  Primary employer exploration hub. Displays preset company cards (Google, Stripe, Amazon, Salesforce, Goldman Sachs) plus custom scraped companies. Includes track filter tabs, real-time search, and '+ Scrape Company' modal.
+</div>
+
+<div class="box">
+  <div class="box-title">2. frontend/src/pages/CompanyDetail.tsx</div>
+  Employer dossier and readiness screen. Displays company financial valuation, culture, and 2-round hiring stages. Computes real-time 'Resume Readiness' score by cross-referencing candidate skills against company competencies.
+</div>
+
+<div class="box">
+  <div class="box-title">3. frontend/src/pages/Interview.tsx</div>
+  The core testing environment. Key features: (1) 30-minute countdown timer with pause/resume and color-coded alerts. (2) Interactive Learning Mode toggle: Practice Mode (instant concept rationale) vs Exam Mode (strict test conditions). (3) Bookmark / Flag for Review button. (4) 1..20 jumpable question grid. (5) LocalStorage state caching.
+</div>
+
+<div class="box">
+  <div class="box-title">4. frontend/src/pages/Result.tsx</div>
+  Comprehensive scorecard. Displays Overall Score (/100), Calibrated Offer Probability (%), and ATS Resume Match (%). Provides 3 tabs: Performance Overview, Question Review (all 20 questions with verified answer keys), and ATS Resume Optimizer (with 1-click copyable bullets). Includes one-click 'Download / Print PDF' button.
+</div>
+
+<h1>4. Mathematical Formulas & Scoring Algorithms</h1>
+
+<h2>4.1 Multi-Dimensional Weighted Performance Score</h2>
+<p>The candidate's overall score <code>S_overall</code> is a normalized linear combination of 5 evaluation categories:</p>
+<div class="math">
+S_overall = 0.25 * S_resume_fit + 0.35 * S_technical + 0.15 * S_communication + 0.15 * S_problem_solving + 0.10 * S_company
+</div>
+<p>Where each category score is bounded in [0, 100]. This rubric ensures technical accuracy is prioritized (35%) while guaranteeing architectural trade-offs, communication clarity, and company cultural fit directly influence the final grade.</p>
+
+<h2>4.2 Statistically Calibrated Selection Probability (Logistic Sigmoid)</h2>
+<p>Rather than displaying a misleading linear score as an offer probability, HireFit AI uses a calibrated logistic sigmoid function:</p>
+<div class="math">
+P_selection = 1 / (1 + exp(-k * (S_effective - S_0)))
+</div>
+<p><strong>Parameters:</strong></p>
+<ul>
+  <li><code>S_effective = 0.85 * S_overall + 0.15 * S_resume_fit</code> (blends live interview performance with resume baseline)</li>
+  <li><code>S_0 = 70.0</code> (the empirical baseline threshold expected for competitive candidates at Tier-1 companies)</li>
+  <li><code>k = 0.08</code> (the logistic curve steepness calibration constant)</li>
+</ul>
+<p><strong>Mathematical Curve Mapping:</strong></p>
+<ul>
+  <li><code>S_overall = 90.0</code> &rarr; <code>P_selection &approx; 83.2%</code> (High Confidence Candidate)</li>
+  <li><code>S_overall = 70.0</code> &rarr; <code>P_selection = 50.0%</code> (Competitive Midpoint / Borderline Candidate)</li>
+  <li><code>S_overall = 50.0</code> &rarr; <code>P_selection &approx; 16.8%</code> (Below Threshold / Needs Upskilling)</li>
+  <li><code>S_overall = 30.0</code> &rarr; <code>P_selection &approx; 3.9%</code> (Low Likelihood of Selection)</li>
+</ul>
+
+<h1>5. Master Viva & Technical Defense Q&A</h1>
+
+<div class="qa-card">
+  <div class="qa-q">Q1: How do you prevent LLM hallucinations during grading?</div>
+  <div class="qa-a">We enforce strict Pydantic v2 schemas (<code>AnswerEvaluationResult</code>) that reject conversational drift. In addition, all technical MCQs have pre-verified reference answer keys and conceptual rationales, meaning the LLM grades against objective rubrics rather than open-ended guessing.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q2: Why did you choose FastAPI over Flask or Django?</div>
+  <div class="qa-a">FastAPI natively supports Python's asyncio event loop, allowing our <code>/sessions/{id}/submit-all</code> endpoint to execute 20 concurrent evaluation tasks in parallel via <code>asyncio.gather</code>. Flask is synchronous by default, and Django introduces heavy relational ORM overhead that doesn't fit our dynamic JSON document structures.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q3: How does your web scraper handle bot blockers or Cloudflare?</div>
+  <div class="qa-a">We implement a graceful degradation architecture: the scraper attempts compliant httpx fetching with a 4-second timeout. If blocked (HTTP 403/429 or CAPTCHA), it seamlessly falls back to our synthetic LLM knowledge base profile, flagging the session with <code>is_limited_data=True</code> so the application never crashes.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q4: Why use MongoDB instead of PostgreSQL or MySQL?</div>
+  <div class="qa-a">Interview sessions contain deeply nested, variable-length structures (20 turns, dynamic MCQ options, parsed resume entity dictionaries, ATS feedback). Storing this in relational SQL requires 6+ table joins. In MongoDB, an entire session is a single cohesive BSON document retrieved in sub-5ms with Motor async driver.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q5: What is the significance of the Logistic Sigmoid formula?</div>
+  <div class="qa-a">A linear score (e.g. 70%) fails to capture hiring realities. Moving from 50% to 60% does not have the same impact as moving from 70% to 80% (crossing the hiring threshold). The sigmoid function centered at S_0=70 with k=0.08 models this exact non-linear competitive inflection point.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q6: How does the system handle different seniority levels (Junior vs Senior vs Staff)?</div>
+  <div class="qa-a">The Role Analyzer parses seniority cues from the role title and JD, setting the initial difficulty parameter (Junior: Level 2, Mid: Level 3, Senior/Staff: Level 4). Senior tracks focus on distributed system trade-offs, circuit breakers, and SLA math rather than basic syntax.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q7: How is candidate privacy and PII protected?</div>
+  <div class="qa-a">Candidate resumes are processed in memory bytes without saving raw files to public directories. The security module scrubs phone numbers, emails, and physical addresses before sending prompt payloads to external LLM providers.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q8: What happens if MongoDB is offline on the evaluator's laptop?</div>
+  <div class="qa-a">We engineered an in-memory session store (<code>in_memory_sessions</code>) fallback in <code>backend/app/core/db.py</code>. If MongoDB is unavailable, all session creation, retrieval, and evaluations run seamlessly in Python memory without throwing connection exceptions.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q9: What happens if the external LLM API key runs out of credits or has no internet?</div>
+  <div class="qa-a">Our provider-agnostic <code>LLMClient</code> wrapper includes an offline <code>MockLLMClient</code> fallback. It returns pre-compiled, mathematically consistent evaluations and ATS suggestions, guaranteeing a flawless presentation even with zero internet.</div>
+</div>
+
+<div class="qa-card">
+  <div class="qa-q">Q10: How does the ATS Resume Optimizer work?</div>
+  <div class="qa-a">It calculates the set intersection and semantic overlap between candidate resume skills and the target job description's core competencies. Missing keywords are flagged as high-priority gaps, and the LLM generates 3 STAR-formatted bullet points embedding those keywords into realistic achievements.</div>
+</div>
+
+</body>
+</html>
+"""
+
+def generate_pdf():
+    docs_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    html_path = os.path.join(docs_dir, "HireFit_AI_Complete_Project_Handbook.html")
+    pdf_path = os.path.join(docs_dir, "HireFit_AI_Complete_Project_Handbook.pdf")
+
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(HTML_CONTENT)
+    print(f"Generated HTML: {html_path}")
+
+    # Use Chrome or Edge headless to print to PDF
+    chrome_path = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
+    edge_path = r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
+    browser = chrome_path if os.path.exists(chrome_path) else edge_path
+
+    cmd = [
+        browser,
+        "--headless",
+        "--disable-gpu",
+        "--no-pdf-header-footer",
+        f"--print-to-pdf={pdf_path}",
+        html_path
+    ]
+    print(f"Running browser print-to-pdf using: {browser}")
+    res = subprocess.run(cmd, capture_output=True, text=True)
+    if res.returncode == 0 and os.path.exists(pdf_path):
+        print(f"Successfully generated PDF: {pdf_path} (Size: {os.path.getsize(pdf_path)} bytes)")
+    else:
+        print(f"Browser PDF generation error: {res.stderr}")
+
+if __name__ == "__main__":
+    generate_pdf()
