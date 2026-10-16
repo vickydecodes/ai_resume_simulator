@@ -90,12 +90,16 @@ class LLMClient:
             messages.append({"role": "system", "content": system_prompt})
         messages.append({"role": "user", "content": prompt})
 
-        # List of reliable free models to try in sequence - fastest first
+        # Prioritize configured model from .env first, then active free models
         candidate_models = []
+        if self.model and self.model not in candidate_models:
+            candidate_models.append(self.model)
         for m in [
-            "cohere/north-mini-code:free",
             "nvidia/nemotron-3.5-lightning:free",
+            "google/gemma-4-26b-a4b-it:free",
+            "google/gemma-4-31b-it:free",
             "liquid/lfm-2.5-2.6b:free",
+            "cohere/north-mini-code:free",
             "dots-studio/dots-3-note-preview:free"
         ]:
             if m not in candidate_models:
@@ -114,10 +118,15 @@ class LLMClient:
                     if res.status_code == 200:
                         data = res.json()
                         return data["choices"][0]["message"]["content"]
+                    elif res.status_code == 401:
+                        logger.error(f"OpenRouter API key is invalid or unauthorized (401). Falling back immediately.")
+                        raise RuntimeError(f"OpenRouter 401 Unauthorized: {res.text[:120]}")
                     else:
                         logger.warning(f"OpenRouter model {model_id} returned status {res.status_code}. Trying next model...")
                         last_err = RuntimeError(f"Status {res.status_code}: {res.text[:150]}")
                 except Exception as ex:
+                    if "401" in str(ex):
+                        raise ex
                     logger.warning(f"OpenRouter model {model_id} error: {ex}. Trying next model...")
                     last_err = ex
 
